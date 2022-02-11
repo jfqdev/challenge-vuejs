@@ -8,27 +8,24 @@
           <q-avatar>
             <img src="https://cdn.quasar.dev/logo-v2/svg/logo-mono-white.svg">
           </q-avatar>
-          Title
         </q-toolbar-title>
+         <q-btn dense flat round icon="shopping_cart" @click="openCartDrawer">
+            <q-badge v-if="cartProducts.length > 0" color="red" text-color="white" floating>
+              {{cartProducts.length}}
+            </q-badge>
+         </q-btn>
       </q-toolbar>
     </q-header>
 
-    <q-drawer show-if-above v-model="leftDrawerOpen" side="left">
-        <categories-list></categories-list>
-    </q-drawer>
+    <!-- Cart -->
+    <cart-drawer v-model="openCart"></cart-drawer>
 
     <q-page-container>
       <router-view />
     </q-page-container>
 
-    <q-footer elevated class="bg-grey-8 text-white">
+    <q-footer elevated class="bg-secondary text-white">
       <q-toolbar>
-        <q-toolbar-title>
-          <q-avatar>
-            <img src="https://cdn.quasar.dev/logo-v2/svg/logo-mono-white.svg">
-          </q-avatar>
-          Title
-        </q-toolbar-title>
       </q-toolbar>
     </q-footer>
 
@@ -40,22 +37,31 @@
 //Components
 import CategoriesList from "src/components/categories/categoriesList.vue"
 
+
 //Vuex Modules
 import mapProducts from 'src/mixins/mapProducts'
 import mapCategories from 'src/mixins/mapCategories'
+import CartDrawer from 'src/components/cart/cartDrawer.vue'
+import mapCart from 'src/mixins/mapCart'
 
 export default {
     name: 'MainLayout',
-    mixins:[mapProducts,mapCategories],
+    mixins:[mapProducts,mapCategories, mapCart],
     data () {
         return {
-            leftDrawerOpen: true,
+            openCart: false,
         }
     },
     components:{
-        CategoriesList
+        CategoriesList,
+        CartDrawer
     },
-    async mounted(){
+    methods:{
+      openCartDrawer(){
+        this.openCart = !this.openCart
+      }
+    },
+    async beforeMount(){
         //Prefetch Products and Categories
         await this.actionProducts()
         await this.actionCategories()

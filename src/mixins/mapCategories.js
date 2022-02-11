@@ -10,6 +10,7 @@ import {
     methods: {
       ...mapMutations('categories', [
           'SetCategories',
+          'SetSelectedCategory'
       ]),
       ...mapActions('categories',[
         'actionCategories',
@@ -17,7 +18,8 @@ import {
     },
     computed: {
       ...mapState('categories', [
-        'categories'
+        'categories',
+        'selectedCategory'
       ])
     }
   };

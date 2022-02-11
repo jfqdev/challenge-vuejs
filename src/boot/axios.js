@@ -1,8 +1,12 @@
 import Vue from 'vue'
 import axios from 'axios'
 
-const api = axios.create({ baseURL: 'http://sva.talana.com:8000/api' })
+const baseURL = ()=>{
+    return 'http://sva.talana.com:8000/api'
+}
+const api = axios.create({ baseURL: baseURL() })
 Vue.prototype.$api = api
 
-export { axios, api }
+
+export { axios, api, baseURL }
 

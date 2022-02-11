@@ -3,6 +3,7 @@ import Vuex from 'vuex'
 
 import products from './products'
 import categories from './categories'
+import cart from './cart'
 
 Vue.use(Vuex)
 
@@ -19,7 +20,8 @@ export default function (/* { ssrContext } */) {
   const Store = new Vuex.Store({
     modules: {
       products,
-      categories
+      categories,
+      cart
     },
 
     // enable strict mode (adds overhead!)
