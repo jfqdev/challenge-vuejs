@@ -36,10 +36,17 @@
 </template>
 
 <script>
+
+//Components
 import CategoriesList from "src/components/categories/categoriesList.vue"
+
+//Vuex Modules
+import mapProducts from 'src/mixins/mapProducts'
+import mapCategories from 'src/mixins/mapCategories'
 
 export default {
     name: 'MainLayout',
+    mixins:[mapProducts,mapCategories],
     data () {
         return {
             leftDrawerOpen: true,
@@ -48,6 +55,11 @@ export default {
     components:{
         CategoriesList
     },
+    async mounted(){
+        //Prefetch Products and Categories
+        await this.actionProducts()
+        await this.actionCategories()
+    }
 }
 </script>
 
