@@ -1,6 +1,6 @@
 # Tienda Mascotas (challenge-vuejs)
 
-The whole Task was implemented by a Quasar SPA.
+The whole Task was implemented using Quasar SPA.
 
     ├── boot                  # axios api config
     ├── components            # (product, categories, cart)
