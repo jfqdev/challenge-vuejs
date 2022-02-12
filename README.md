@@ -12,6 +12,7 @@ The whole Task was implemented using Quasar SPA.
     └── App.vue
 
 ## Install the dependencies
+Clone main branch and install it locally using npm
 ```bash
 npm install
 ```
